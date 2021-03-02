@@ -1,0 +1,63 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway Bold';
+}
+
+span {
+    font-family: 'Raleway Regular';
+}
+
+strong {
+    font-family: 'Raleway SemiBold';
+}
+
+button,
+a,
+address {
+    font-family: 'Raleway Light';
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+body {
+    margin: 0;
+}
+
+details ul {
+    list-style: none;
+}
+summary {
+    outline: none;
+}
+
+summary::before {
+    content: '\203A';
+    font-family: 'Raleway Bold';
+    padding-right: 0.5em;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+
+blockquote {
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Raleway Italic';
+}
+
+blockquote::before {
+    content: "«";
+}
+
+blockquote::after {
+    content: "»";
+}
