@@ -24,7 +24,6 @@ let cached = global.mongo
 if (!cached) {
   cached = global.mongo = { conn: null, promise: null }
 }
-export const client = MongoClient.client;
 export async function connectToDatabase() {
   if (cached.conn) {
     return cached.conn

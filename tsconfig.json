@@ -5,7 +5,7 @@
     "allowJs": true,
     "jsx": "preserve",
     "outDir": "build",
-    "rootDir": "src",
+    "rootDir": "./",
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,
@@ -25,7 +25,7 @@
     "noEmit": true
   },
   "include": [
-    "src"
+    "pages"
   ],
   "exclude": [
     "node_modules"

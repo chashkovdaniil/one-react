@@ -12,12 +12,6 @@ export default function Home({ isConnected }) {
     const findDocuments = async function () {
         // Get the documents collection
         console.log('Run load data');
-        fetch("/api/mes", {
-            method: 'get',
-        })
-            .then((res) => {
-                res.json().then(data => console.log(data.msg));
-            })
         // console.log('db -- '+client);
         // const collection = db.collection('projects');
         // // Find some documents
