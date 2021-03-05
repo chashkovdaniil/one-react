@@ -56,7 +56,9 @@ function Section(props: any) {
             <div className={bodyClassNames}>
                 {props.children}
             </div>
-            <footer>{nextSectionLink}</footer>
+            {
+                nextSectionLink && <footer>{nextSectionLink}</footer>
+            }
             {bgImage}
         </section>
     );

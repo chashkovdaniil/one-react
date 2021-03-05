@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Card from '../common/Card';
-import Project from '../../models/Project';
+import Project from '../../data/models/Project';
 
 export default function CardProject(props: any) {
     let project: Project = props.project;

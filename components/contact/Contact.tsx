@@ -1,4 +1,4 @@
-import Member from "../../models/Member";
+import Member from "../../data/models/Member";
 
 function Contact(props: any) {
     let contact: Member = props.contact;

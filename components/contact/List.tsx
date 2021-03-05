@@ -1,6 +1,6 @@
 import Contact from './Contact';
 import Card from '../common/Card';
-import Member from '../../models/Member';
+import Member from '../../data/models/Member';
 
 function ListContacts(props: any) {
     const listContacts = [new Member({

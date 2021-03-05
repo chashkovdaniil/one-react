@@ -11,7 +11,8 @@ span {
     font-family: 'Raleway Regular';
 }
 
-strong {
+strong,
+footer {
     font-family: 'Raleway SemiBold';
 }
 
@@ -33,6 +34,7 @@ body {
 details ul {
     list-style: none;
 }
+
 summary {
     outline: none;
 }

@@ -1,32 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Section from "../../components/common/Section";
+import MainLayout from "../../components/layouts/MainLayout";
 import ListProjects from "../../components/project/List";
-import Project from "../../models/Project";
+import Project from "../../data/models/Project";
+import { connectToDatabase } from "../../util/mongodb";
+import { loadDataProjects } from "../../data/projects";
 
-export default function AllProjects(props: any) {
-    const [projects, setProjects] = useState<Array<any> | null>(null);
+export default function AllProjects({ data }: any) {
+    const [projects, setProjects] = useState<Array<any> | null>(data);
 
-    const loadDataProjects = async function () {
-        return new Promise<Array<any>>((resolve, reject) => {
-            fetch('http://localhost:3000/api/projects').then(
-                (res) => res.json()
-            ).then(
-                (data: Array<any>) => {
-                    resolve(data);
-                    return;
-                }
-            );
-        });
-    }
-    loadDataProjects().then((data: Array<any>) => setProjects(data.map(p => new Project(p))));
+    useEffect(() => {
+        async function loadData() {
+            let datas = await loadDataProjects();
+            setProjects(datas.map((p: any) => new Project(p)));
+        }
+        if (!data) {
+            loadData();
+        }
+        return ()=>{};
+    });
+
+
     return (
-        <Section title="All projects">
-            {
-                projects == null ?
-                    <div>load</div> :
-                    <ListProjects projects={projects} />
-            }
-
-        </Section>
+        <MainLayout title="Projects">
+            <Section title="All projects">
+                {
+                    projects == null ?
+                        <div>loader</div> :
+                        <ListProjects projects={projects} />
+                }
+            </Section>
+        </MainLayout>
     );
+}
+export async function getStaticProps({ req }: any) {
+    if (!req) {
+        return { props: { data: null } };
+    }
+    let data = await loadDataProjects();
+    return { props: { data } };
 }
