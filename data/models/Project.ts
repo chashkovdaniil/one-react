@@ -1,25 +1,33 @@
 class Project {
+    id: any;
     name: string;
-    description: string;
+    desc: string;
     site: string;
-    photo: string;
+    photoURL: string;
     members: Array<string>;
+    url: string;
 
-    constructor(projectMap: any){
+    constructor(projectMap: any) {
+        this.id = projectMap?._id;
         this.name = projectMap.name;
-        this.description = projectMap.description;
+        this.desc = projectMap.desc;
         this.site = projectMap.site;
-        this.photo = projectMap.photo;
+        this.photoURL = projectMap.photoURL;
         this.members = projectMap.members;
+        this.url = projectMap?.name?.replaceAll(' ', '-');
     }
 
-    toMap(project: Project): any{
+    toMap(project: Project): any {
         return {
+            _id: project.id,
             name: project.name,
-            description: project.description,
+            desc: project.desc,
+            photoURL: project.photoURL,
             site: project.site,
-            members: project.members
+            members: project.members,
+            url: project.url
         };
     }
 }
+
 export default Project;

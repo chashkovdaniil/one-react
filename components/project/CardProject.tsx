@@ -10,8 +10,8 @@ export default function CardProject(props: any) {
         <Card title={project.name}>
             <div
                 className="project-preview-img"
-                style={{ backgroundImage: "url(" + project.photo + ")" }}>
-                <Link href={`/project/${props.project.name.replaceAll(' ', '-')}`}>
+                style={{ backgroundImage: "url(" + project.photoURL + ")" }}>
+                <Link href="/project/name" as={`/project/${props.project.url}`}>
                     <a className="project-preview-link center column">
                         <i className="fas fa-eye"></i>
                       View

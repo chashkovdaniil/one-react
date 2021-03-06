@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Project from '../../data/models/Project';
-import {connectToDatabase} from '../../util/mongodb';
+import {connectToDatabase} from '../../../util/mongodb';
 
-export default async function projects(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { client, db } = await connectToDatabase();
+    const { url } = req.query;
     if (await client.isConnected()) {
         const collection = db.collection('projects');
-        let projects: Array<any> = await collection.find().toArray();
-        res.status(200).json(projects);
+        let project: Array<any> = (await collection.find({url: url}).toArray())[0];
+        res.status(200).json(project);
         
         return;
     }

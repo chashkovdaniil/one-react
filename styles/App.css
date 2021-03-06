@@ -78,8 +78,10 @@ ul.list-contacts {
 }
 
 .project-preview-img .project-preview-link {
+  border-radius: 5px;
   opacity: 0;
   color: #ffffff;
+  background-color: rgba(0,0,0,0.6);
   text-decoration: none;
   transition: 0.3s ease-in 0s;
 }

@@ -6,15 +6,15 @@ import Project from "../../data/models/Project";
 import { connectToDatabase } from "../../util/mongodb";
 import { loadDataProjects } from "../../data/projects";
 
-export default function AllProjects({ data }: any) {
-    const [projects, setProjects] = useState<Array<any> | null>(data);
+export default function AllProjects(props: any) {
+    const [projects, setProjects] = useState<Array<any>>();
 
     useEffect(() => {
         async function loadData() {
-            let datas = await loadDataProjects();
-            setProjects(datas.map((p: any) => new Project(p)));
+            let data = await loadDataProjects();
+            setProjects(data.map((p: any) => new Project(p)));
         }
-        if (!data) {
+        if (!projects) {
             loadData();
         }
         return ()=>{};
@@ -32,11 +32,4 @@ export default function AllProjects({ data }: any) {
             </Section>
         </MainLayout>
     );
-}
-export async function getStaticProps({ req }: any) {
-    if (!req) {
-        return { props: { data: null } };
-    }
-    let data = await loadDataProjects();
-    return { props: { data } };
 }

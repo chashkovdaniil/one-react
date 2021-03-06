@@ -7,15 +7,15 @@ import { useEffect, useState } from 'react';
 import { loadDataProjects } from '../data/projects';
 import Project from '../data/models/Project';
 
-export default function Home({ data }: any) {
-    const [projects, setProjects] = useState<Array<any> | null>(null);
+export default function Home(props: any) {
+    const [projects, setProjects] = useState<Array<any>>();
     
     useEffect(() => {
         async function loadData() {
-            let datas = await loadDataProjects();
-            setProjects(datas.map((p: any) => new Project(p)));
+            let data = await loadDataProjects();
+            setProjects(data.map((p: any) => new Project(p)));
         }
-        if (!data) {
+        if (!projects) {
             loadData();
         }
         return () => { };
@@ -71,10 +71,3 @@ export default function Home({ data }: any) {
         </MainLayout>
     );
 };
-export async function getStaticProps({ req }: any) {
-    if (!req) {
-        return { props: { data: null } };
-    }
-    let data = await loadDataProjects();
-    return { props: { data } };
-}
