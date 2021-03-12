@@ -1,8 +1,8 @@
-class Project {
+export default class Project {
     id: any;
     name: string;
     desc: string;
-    site: string;
+    siteURL: string;
     photoURL: string;
     members: Array<string>;
     url: string;
@@ -11,7 +11,7 @@ class Project {
         this.id = projectMap?._id;
         this.name = projectMap.name;
         this.desc = projectMap.desc;
-        this.site = projectMap.site;
+        this.siteURL = projectMap.siteURL;
         this.photoURL = projectMap.photoURL;
         this.members = projectMap.members;
         this.url = projectMap?.name?.replaceAll(' ', '-');
@@ -23,11 +23,9 @@ class Project {
             name: project.name,
             desc: project.desc,
             photoURL: project.photoURL,
-            site: project.site,
+            siteURL: project.siteURL,
             members: project.members,
             url: project.url
         };
     }
 }
-
-export default Project;

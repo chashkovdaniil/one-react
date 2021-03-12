@@ -4,6 +4,7 @@ import Project from "../../data/models/Project";
 import { useRouter } from "next/router";
 import MainLayout from "../../components/layouts/MainLayout";
 import { loadDataProject } from '../../data/projects';
+import User from '../../data/models/User';
 
 function ProjectView(props: any) {
     const [isLoad, setLoad] = useState(true);
@@ -13,7 +14,9 @@ function ProjectView(props: any) {
     useEffect(() => {
         async function loadData(url: any){
             let data = await loadDataProject(url);
-            setProject(new Project(data));
+            setProject(data);
+            let members: Array<string> = data.members;
+            console.log(members[0]);
         }
         if (router.isReady) {
             if (!project) {
@@ -32,7 +35,7 @@ function ProjectView(props: any) {
         ) : (
             <MainLayout title={project?.name}>
                 <Section title={project?.name}
-                    forwardLink={{ title: 'Go to site', href: 'https://site.com' }}
+                    forwardLink={{ title: 'Go to site', href: `${project?.siteURL}` }}
                     childrenOnTop
                 >
                     <div className="center" style={{

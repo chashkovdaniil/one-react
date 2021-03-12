@@ -3,7 +3,6 @@ import Section from "../../components/common/Section";
 import MainLayout from "../../components/layouts/MainLayout";
 import ListProjects from "../../components/project/List";
 import Project from "../../data/models/Project";
-import { connectToDatabase } from "../../util/mongodb";
 import { loadDataProjects } from "../../data/projects";
 
 export default function AllProjects(props: any) {
@@ -12,12 +11,12 @@ export default function AllProjects(props: any) {
     useEffect(() => {
         async function loadData() {
             let data = await loadDataProjects();
-            setProjects(data.map((p: any) => new Project(p)));
+            setProjects(data);
         }
         if (!projects) {
             loadData();
         }
-        return ()=>{};
+        return () => { };
     });
 
 

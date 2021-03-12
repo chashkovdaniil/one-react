@@ -1,13 +1,13 @@
 import Contact from './Contact';
 import Card from '../common/Card';
-import Member from '../../data/models/Member';
+import User from '../../data/models/User';
 
 function ListContacts(props: any) {
-    const listContacts = [new Member({
+    const listContacts = [new User({
             firstName: 'Daniil', 
             lastName: 'Chashkov',
             email: 'chashkovdaniil@gmail.com'
-        })].map((contact: Member, index: number) =>
+        })].map((contact: User, index: number) =>
         <li key={index}>
             <Contact contact={contact}/>
         </li>

@@ -12,8 +12,8 @@ export default function Home(props: any) {
     
     useEffect(() => {
         async function loadData() {
-            let data = await loadDataProjects();
-            setProjects(data.map((p: any) => new Project(p)));
+            let data = await loadDataProjects({ limit: 3 });
+            setProjects(data);
         }
         if (!projects) {
             loadData();

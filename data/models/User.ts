@@ -1,11 +1,11 @@
-class Member {
+export default class User {
     name: string;
     firstName: string;
     lastName: string;
     email: string;
     photo: string;
 
-    constructor(memberMap: any){
+    constructor(memberMap: any) {
         this.firstName = memberMap.firstName;
         this.lastName = memberMap.lastName;
         this.name = `${this.firstName} ${this.lastName}`;
@@ -23,4 +23,3 @@ class Member {
         };
     }
 }
-export default Member;
