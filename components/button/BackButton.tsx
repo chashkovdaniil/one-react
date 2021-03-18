@@ -4,10 +4,9 @@ function BackButton() {
     const router = useRouter();
     
     return (
-        <button onClick={router.back} className="backButton">
-            <i className="fas fa-long-arrow-alt-left"></i>
+        <a onClick={router.back} href="#back" className="link-back">
             {" Go back"}
-        </button>
+        </a>
     );
 }
 export default BackButton;

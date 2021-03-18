@@ -3,14 +3,21 @@ import Project from "../../data/models/Project";
 import CardProject from "./CardProject";
 
 function ListProjects(props: any) {
-    const listProjects = props.projects?.map((project: Project, index: number) => {
-        if (props.limit && (index == props.limit)) { return };
-        return <li key={index}>
-            <CardProject project={project}/>
-        </li>;
-    });
+  const projects: Array<any> | null = props.projects;
+
+  if (!projects || projects.length == 0) {
+    return <div className="loader" />;
+  }
+
+  const listProjects = projects.map((project: Project) => {
     return (
-        <ul className="list-projects">{listProjects}</ul>
+      <li key={project.id}>
+        <CardProject project={project} />
+      </li>
     );
+  });
+  return (
+    <ul className="list-projects">{listProjects}</ul>
+  );
 }
 export default ListProjects;

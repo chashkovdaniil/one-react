@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
-import BackButton from './BackButton';
-import ForwardButton from './ForwardButton';
+import BackButton from '../button/BackButton';
+import ForwardButton from '../button/ForwardButton';
 
 /* Section */
 /* 
@@ -12,55 +12,51 @@ import ForwardButton from './ForwardButton';
     forwardLink: object {href, title}
 */
 function Section(props: any) {
-    const router = useRouter();
+  const router = useRouter();
+  let bodyClassNames = classNames({
+    'section-body': true,
+    'section-center': props.childrenCenter,
+  });
+  let backButton = router.pathname != "/" && <BackButton />;
 
-    let sectionClassName = classNames({
-        'column': props.childrenNotInColumn ? false : true,
-        'top': props.childrenOnTop,
-    });
-    let bodyClassNames = classNames({
-        'section-body': true,
-        'section-center': props.childrenCenter,
-    });
-    let backButton = router.pathname != "/" &&
-        <BackButton />;
+  let forwardButton = props.forwardLink && (
+    <ForwardButton href={props.forwardLink.href}>
+      {props.forwardLink.title}
+    </ForwardButton>
+  );
 
-    let forwardButton = props.forwardLink &&
-        <ForwardButton href={props.forwardLink.href}>
-            {props.forwardLink.title}
-        </ForwardButton>;
+  let nextSectionLink = props.nextSectionId && (
+    <a href={"#" + props.nextSectionId} className="next-section">
+      <i className="fas fa-angle-double-down"></i>
+    </a>
+  );
+  let bgImage = props.bgImage && (
+    <div
+      className="section-bg"
+      style={{ backgroundImage: "url(" + props.bgImage + ")" }}
+    ></div>
+  );
+  let header = (backButton || props.title) && (
+    <header>
+      <div className="header__link">
+        {backButton}
+      </div>
+      <h2>{props.title}</h2>
+      <div className="header__link">
+        {forwardButton}
+      </div>
+    </header>
+  );
 
-    let nextSectionLink = props.nextSectionId &&
-        <a href={"#" + props.nextSectionId} className="next-section">
-            <i className="fas fa-angle-double-down"></i>
-        </a>;
-    let bgImage = props.bgImage &&
-        <div
-            className="section-bg"
-            style={{ backgroundImage: "url(" + props.bgImage + ")" }}
-        ></div>;
-
-    return (
-        <section id={props.id} className={sectionClassName}>
-            { (backButton || props.title) &&
-                <header>
-                    <h2>{props.title}</h2>
-                    <div className="h-left-menu">
-                        {backButton}
-                    </div>
-                    <div className="h-right-menu">
-                        {forwardButton}
-                    </div>
-                </header>
-            }
-            <div className={bodyClassNames}>
-                {props.children}
-            </div>
-            {
-                nextSectionLink && <footer>{nextSectionLink}</footer>
-            }
-            {bgImage}
-        </section>
-    );
+  return (
+    <section id={props.id} className="section_top">
+      {header}
+      <div className={bodyClassNames}>
+        {props.children}
+      </div>
+      {nextSectionLink && <footer>{nextSectionLink}</footer>}
+      {bgImage}
+    </section>
+  );
 }
 export default Section;

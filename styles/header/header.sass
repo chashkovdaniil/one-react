@@ -1,0 +1,19 @@
+.header
+  display: grid
+  grid-template-columns: 1fr auto 1fr
+  & > :nth-child(n)
+    display: flex
+    align-items: center
+    justify-content: center
+  & > :last-child
+    justify-content: flex-end
+  &__link
+    padding: 20px
+    height: 60px
+    display: flex
+    align-items: center
+    font-size: 18px
+    line-height: 21px
+  nav 
+    display: flex
+    flex-wrap: wrap

@@ -30,10 +30,11 @@ export async function database(): Promise<Database> {
   if (cached) {
     if (!cached.client.isConnected()) {
       throw new Error('Connection failed');
+      // return null;
     }
     return cached;
   }
-  
+
 
   const opts = {
     useNewUrlParser: true,

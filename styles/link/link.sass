@@ -1,0 +1,29 @@
+@use '../_vars'
+
+.link
+  color: vars.$primary-color
+
+  &_bordered
+    padding: 6px 25px
+    border: vars.$primary-color 1px solid
+    border-radius: 15px
+    transition: ease-in 0.2s
+
+  &_bordered:hover
+    background: vars.$primary-color
+    color: #fff
+    transition: ease-in 0.2s
+  &-forward,
+  &-back
+    font-size: 14px
+    background-color: transparent
+  &-back:before
+    content: '\f30a'
+    margin-right: 0.5em
+    font-family: "Font Awesome 5 Free"
+    font-weight: 700
+  &-forward:after
+    content: '\f30b'
+    margin-left: 0.5em
+    font-family: "Font Awesome 5 Free"
+    font-weight: 700

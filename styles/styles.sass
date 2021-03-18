@@ -1,0 +1,95 @@
+@use './_vars'
+@use './loader'
+@use './card/card'
+@use './details/details'
+@use './blockquote/blockquote'
+@use './_animations'
+@use './header/header'
+@use './section/section'
+@use './link/link'
+@use './project-preview/project-preview'
+@use './project-info/project-info'
+@use './contact/contact'
+@use './fonts'
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  border: 0
+  outline: none
+  font-family: 'Raleway Regular'
+  text-decoration: none
+  list-style: none
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-family: 'Raleway Bold'
+
+span
+  font-family: 'Raleway Regular'
+
+strong,
+footer
+  font-family: 'Raleway SemiBold'
+
+button,
+a,
+address
+  font-family: 'Raleway Light'
+
+button
+  cursor: pointer
+
+code
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+a
+  color: #000000
+
+.logotype
+  margin: 0 20px
+  font-family: 'Raleway Bold'
+  text-transform: uppercase
+
+ul.list-projects,
+ul.list-contacts
+  width: 100%
+  display: flex
+  justify-content: space-evenly
+  flex-wrap: wrap
+
+input
+  padding: 15px
+  border-radius: 15px
+  background: rgba(138,43,226,0.2)
+form
+  display: flex
+  flex-direction: column
+  > :nth-child(n)
+    margin-bottom: 20px
+.form
+  &-input
+    position: relative
+    width: 300px
+    > label
+      font-size: 15px
+      transition: ease-in 0.2s
+    > input
+      width: 100%
+    &_focused__label
+      font-size: 18px
+      transition: ease-in 0.2s
+  &-buttons
+    display: flex
+    justify-content: space-around
+  &__button
+    width: 64px
+    height: 64px
+    border-radius: 100%
+    background: vars.$primary-color
+    color: white

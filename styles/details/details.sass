@@ -1,0 +1,19 @@
+details
+  ul
+    margin: 10px 40px
+  &[open] summary::before
+    transform: rotate(90deg) translate(25%, 0)
+    transition: 0.3s
+
+summary
+  cursor: pointer
+  &::marker
+    content: none
+  &::before
+    content: "\f054"
+    padding-right: 1em
+    display: inline-block
+    font-family: "Font Awesome 5 Free"
+    font-weight: 700
+    transform: rotate(0deg) translate(25%, 0)
+    transition: 0.3s

@@ -1,23 +1,27 @@
 import Project from "./models/Project";
 
-const loadDataProjects = async function (props: any): Promise<Project[]> {
-    // Todo: реализовать ограничения по выводу
-    let response = await fetch(`/api/projects`);
-    if (props.limit) {
-        response = await fetch(`/api/projects?limit=${props.limit}`);
-    }
-     
-    let data = await response.json();
+export const loadDataProjects = async function (props?: any): Promise<Project[] | null> {
+  // Todo: реализовать ограничения по выводу
+  let response = await fetch(`/api/projects`);
+  if (props?.limit) {
+    response = await fetch(`/api/projects?limit=${props.limit}`);
+  }
 
-    return data.map((p: any) => new Project(p));
-}
-const loadDataProject = async function (url: string): Promise<Project> {
-    let response = await fetch(`/api/projects/${url}`);
-    let data = await response.json();
+  if (response.status >= 400) {
+    return null;
+  }
 
-    return new Project(data);
+  let data = await response.json();
+  return data.map((p: any) => new Project(p));
 }
-export {
-    loadDataProjects,
-    loadDataProject
-};
+export const loadDataProject = async function (url: string): Promise<Project | null> {
+  let response = await fetch(`/api/projects/${url}`);
+
+  if (response.status >= 400) {
+    return null;
+  }
+
+  let data = await response.json();
+
+  return new Project(data);
+}
